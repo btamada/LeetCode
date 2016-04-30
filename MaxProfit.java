@@ -1,7 +1,5 @@
 /**
  *
- * Phone screen question asked by Blend Labs.
- *
  * Given an integer array of car prices and the indices of the array representing
  * the times of the day, find the max profit you can make if you can only buy once
  * and sell once.
