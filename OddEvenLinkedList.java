@@ -12,6 +12,9 @@
  The relative order inside both the even and odd groups should remain as it was in the input.
  The first node is considered odd, the second node even and so on ...
 
+ Time: O(nodes)
+ Space: O(1)
+
  */
 public class OddEvenLinkedList {
 
@@ -31,6 +34,26 @@ public class OddEvenLinkedList {
         print(head.next);
     }
 
+    /**
+     * Time: O(nodes)
+     * Space: O(1)
+     *
+     * In Progress...
+     *
+     */
+
+    private static ListNode oddEvenListConst(ListNode head) {
+        if(head == null || head.next == null) return head;
+        
+    }
+
+    /**
+     * Time: O(nodes)
+     * Space: O(nodes)
+     *
+     * @param head
+     * @return
+     */
     private static ListNode oddEvenList(ListNode head) {
         if(head == null || head.next == null) return head;
 
