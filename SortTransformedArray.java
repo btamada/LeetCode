@@ -24,7 +24,7 @@ public class SortTransformedArray {
 
     public static void main(String[] args) {
         int[] nums = {-4, -2, 2, 4};
-        int a = 1;
+        int a = -1;
         int b = 3;
         int c = 5;
         for(int n : sortTransformedArray(nums,a,b,c)) {
@@ -36,15 +36,11 @@ public class SortTransformedArray {
         if(nums == null || nums.length == 0) return null;
 
         // calculate the numbers and put them back into the array
-        for(int i = 0; i < nums.length; i++) {
-            int x = nums[i];
-            nums[i] = (a * (int)Math.pow(x,2)) + (b * (x)) + c;
-        }
-
         // put the numbers into a tree set to sort them
         TreeSet<Integer> treeSet = new TreeSet<>();
         for(int i = 0; i < nums.length; i++) {
-            treeSet.add(nums[i]);
+            int x = nums[i];
+             treeSet.add((a * (int)Math.pow(x,2)) + (b * (x)) + c);
         }
 
         // iterate through the tree set putting numbers back into array
