@@ -22,7 +22,7 @@ public class BombEnemy {
     public static void main(String[] args) {
         char[][] grid = {
             {'0', 'X', '0', '0'},
-            {'X', '0', 'Y', 'X'},
+            {'X', '0', '0', 'X'},
             {'0', 'X', '0', '0'}
         };
         System.out.println(bombEnemy(grid));
@@ -54,10 +54,11 @@ public class BombEnemy {
                     grid[i][k] = 'B';
 
                     // search through row and skip 'B' elements
-                    currEnemiesKilled += searchRow(grid,i,k);
+                    currEnemiesKilled += searchRow(grid,i);
+
 
                     // search through col and skip 'B' elements
-                    currEnemiesKilled += searchCol(grid,i,k);
+                    currEnemiesKilled += searchCol(grid,k);
 
                     // update the maximum enemies killed
                     maxEnemiesKilled = Math.max(currEnemiesKilled,maxEnemiesKilled);
@@ -67,16 +68,30 @@ public class BombEnemy {
         return maxEnemiesKilled;
     }
 
-    private static int searchRow(char[][] grid, int rowNum, int colNum) {
+    private static int searchRow(char[][] grid, int rowNum) {
 
         int numEnemiesKilled = 0;
+
+        for(int i = 0; i < grid[0].length; i++) {
+            if(grid[rowNum][i] == 'Y') break;
+            if(grid[rowNum][i] != '0' && grid[rowNum][i] != 'B') {
+                ++numEnemiesKilled;
+            }
+        }
 
         return numEnemiesKilled;
     }
 
-    private static int searchCol(char[][] grid, int rowNum, int colNum) {
+    private static int searchCol(char[][] grid, int colNum) {
 
         int numEnemiesKilled = 0;
+
+        for(int i = 0; i < grid.length; i++) {
+            if(grid[i][colNum] == 'Y') break;
+            if(grid[i][colNum] != '0' && grid[i][colNum] != 'B') {
+                ++numEnemiesKilled;
+            }
+        }
 
         return numEnemiesKilled;
     }
