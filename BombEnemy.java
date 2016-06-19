@@ -50,17 +50,14 @@ public class BombEnemy {
                     // keep track of number of enemies killed in this iteration
                     int currEnemiesKilled = 0;
 
-                    // search through left-row
-                    currEnemiesKilled += searchRow(i,"left");
+                    // set empty space to 'B' for bomb
+                    grid[i][k] = 'B';
 
-                    // search through right-row
-                    currEnemiesKilled += searchRow(i,"right");
+                    // search through row and skip 'B' elements
+                    currEnemiesKilled += searchRow(grid,i,k);
 
-                    // search through up-col
-                    currEnemiesKilled += searchCol(k,"up");
-
-                    // search through down-col
-                    currEnemiesKilled += searchCol(k,"down");
+                    // search through col and skip 'B' elements
+                    currEnemiesKilled += searchCol(grid,i,k);
 
                     // update the maximum enemies killed
                     maxEnemiesKilled = Math.max(currEnemiesKilled,maxEnemiesKilled);
@@ -70,28 +67,16 @@ public class BombEnemy {
         return maxEnemiesKilled;
     }
 
-    private static int searchRow(int rowNum, String dir) {
+    private static int searchRow(char[][] grid, int rowNum, int colNum) {
 
         int numEnemiesKilled = 0;
-
-        if(dir.equalsIgnoreCase("left")) {
-
-        } else if(dir.equalsIgnoreCase("right")) {
-
-        }
 
         return numEnemiesKilled;
     }
 
-    private static int searchCol(int colNum, String dir) {
+    private static int searchCol(char[][] grid, int rowNum, int colNum) {
 
         int numEnemiesKilled = 0;
-
-        if(dir.equalsIgnoreCase("up")) {
-
-        } else if(dir.equalsIgnoreCase("down")) {
-
-        }
 
         return numEnemiesKilled;
     }
