@@ -21,8 +21,8 @@ public class BombEnemy {
 
     public static void main(String[] args) {
         char[][] grid = {
-            {'0', 'X', '0', '0'},
-            {'X', '0', '0', 'X'},
+            {'0', 'X', '0', 'X'},
+            {'X', 'Y', '0', 'X'},
             {'0', 'X', '0', '0'}
         };
         System.out.println(bombEnemy(grid));
@@ -53,12 +53,17 @@ public class BombEnemy {
                     // set empty space to 'B' for bomb
                     grid[i][k] = 'B';
 
-                    // search through row and skip 'B' elements
-                    currEnemiesKilled += searchRow(grid,i);
+                    // search through left row
+                    currEnemiesKilled += searchRowLeft(grid,i,k);
 
+                    // search through right row
+                    currEnemiesKilled += searchRowRight(grid,i,k);
 
-                    // search through col and skip 'B' elements
-                    currEnemiesKilled += searchCol(grid,k);
+                    // search through up col
+                    currEnemiesKilled += searchColUp(grid,i,k);
+
+                    // search through down col
+                    currEnemiesKilled += searchColDown(grid,i,k);
 
                     // update the maximum enemies killed
                     maxEnemiesKilled = Math.max(currEnemiesKilled,maxEnemiesKilled);
@@ -68,11 +73,11 @@ public class BombEnemy {
         return maxEnemiesKilled;
     }
 
-    private static int searchRow(char[][] grid, int rowNum) {
+    private static int searchRowLeft(char[][] grid, int rowNum, int colNum) {
 
         int numEnemiesKilled = 0;
 
-        for(int i = 0; i < grid[0].length; i++) {
+        for(int i = colNum; i >= 0; i--) {
             if(grid[rowNum][i] == 'Y') break;
             if(grid[rowNum][i] != '0' && grid[rowNum][i] != 'B') {
                 ++numEnemiesKilled;
@@ -82,11 +87,39 @@ public class BombEnemy {
         return numEnemiesKilled;
     }
 
-    private static int searchCol(char[][] grid, int colNum) {
+    private static int searchRowRight(char[][] grid, int rowNum, int colNum) {
 
         int numEnemiesKilled = 0;
 
-        for(int i = 0; i < grid.length; i++) {
+        for(int i = colNum; i < grid[0].length; i++) {
+            if(grid[rowNum][i] == 'Y') break;
+            if(grid[rowNum][i] != '0' && grid[rowNum][i] != 'B') {
+                ++numEnemiesKilled;
+            }
+        }
+
+        return numEnemiesKilled;
+    }
+
+    private static int searchColUp(char[][] grid, int rowNum, int colNum) {
+
+        int numEnemiesKilled = 0;
+
+        for(int i = rowNum; i >= 0; i--) {
+            if(grid[i][colNum] == 'Y') break;
+            if(grid[i][colNum] != '0' && grid[i][colNum] != 'B') {
+                ++numEnemiesKilled;
+            }
+        }
+
+        return numEnemiesKilled;
+    }
+
+    private static int searchColDown(char[][] grid, int rowNum, int colNum) {
+
+        int numEnemiesKilled = 0;
+
+        for(int i = rowNum; i < grid.length; i++) {
             if(grid[i][colNum] == 'Y') break;
             if(grid[i][colNum] != '0' && grid[i][colNum] != 'B') {
                 ++numEnemiesKilled;
