@@ -31,7 +31,7 @@ public class InterlaceStrings {
             sb.append(bigString.charAt(i));
             lastIndex = i;
         }
-        sb.append(bigString.substring(i));
+        sb.append(bigString.substring(lastIndex));
         return sb.toString();
     }
 
