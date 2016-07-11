@@ -35,8 +35,8 @@ import java.util.*;
 public class FindKPairsSmallestSums {
 
     public static void main(String[] args) {
-        int[] nums1 = {1, 7, 11};
-        int[] nums2 = {2, 4, 6};
+        int[] nums1 = {1, 2};
+        int[] nums2 = {3};
         List<int[]> res = kSmallestPairs(nums1, nums2, 4);
         for (int[] a : res) {
             for (Integer n : a) {
@@ -65,8 +65,8 @@ public class FindKPairsSmallestSums {
         // sort the pairs
         Collections.sort(res, (a, b) -> (a[0] + a[1]) - (b[0] + b[1]));
 
-        // return the first k pairs
-        res = res.subList(0,k);
+        // return the first k pairs or the whole list
+        res = k >= res.size() ? res.subList(0,res.size()) : res.subList(0,k);
 
         return res;
     }
