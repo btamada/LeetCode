@@ -66,7 +66,8 @@ public class FindKPairsSmallestSums {
         Collections.sort(res, (a, b) -> (a[0] + a[1]) - (b[0] + b[1]));
 
         // return the first k pairs or the whole list
-        res = k >= res.size() ? res.subList(0,res.size()) : res.subList(0,k);
+        if (k < res.size())
+            res = res.subList(0,k);
 
         return res;
     }
